@@ -1,0 +1,105 @@
+::selection{background-color: none;
+color:inherit;}
+
+body{
+  background-color: #000000;
+}
+
+.teclado{
+  width: 480px;
+  height: 130px;
+  background-color: #1b1b1b;
+  border-radius: 9px;
+  padding: 30px;
+  color: #eee;
+  margin: 20px auto 10px auto;
+}
+
+.logo{
+  width: 80px;
+  height: 40px;
+  background-color: rgb(20, 35, 255);
+  color: #eee;
+  font-weight: 300;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: oblique;
+  font-size: 30px;
+  line-height: 40px;
+  text-align: center;
+  margin: -5px auto 10px auto;
+  border-radius: 40px;
+}
+
+.titulo{
+  width: 300px;
+  height: 50px;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  font-weight: 300;
+  font-style: bold;
+  font-family: Georgia, serif;
+  font-size: 32px;
+  text-align: center;
+  justify-content: center;
+  margin: 5px auto 10px auto;
+  border-radius: 40px;
+}
+
+.tecla{
+  width: 40px;
+  height: 40px;
+  background-color: rgb(80, 79, 79);
+  color: aliceblue;
+  text-align: left;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  padding-left: 8px;
+  line-height: 10px;
+  border-radius: 5px;
+  float:none;
+  margin-right: 3x;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: box-shadow 0.7s ease;
+}
+
+.funcional{
+  width: 84px; 
+  background-color: #f14519;
+  border-color: #eee;
+}
+
+.invi{
+  width: 64px;
+  visibility: hidden;
+}
+
+.tecla:hover{
+  box-shadow: 0px 0px 10px #08c5ff;
+  z-index: 1000;
+}
+
+/*08c5ff*/
+#contenedor-matriz{
+  display: flex;
+  justify-content: center;
+}
+
+#matriz{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  padding: 2px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.cuadrado{
+  border: 2px solid rgb(129, 129, 129);
+  width: 50px;
+  height: 50px;
+  font-size: 35px;
+  color:rgb(255, 255, 255);
+  text-align: center;
+  align-content: center;
+  font-family: Georgia, serif;
+}

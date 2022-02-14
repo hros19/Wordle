@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>TC01 - Wordle, Hansol Antay</title>
+
+  <!-- Fuente IMB Plex Sans -->
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="design.css">
+
+  <style type="text/css">
+
+  </style>
+</head>
+
+<body>
+  <div class="titulo">
+    WORDLE
+  </div>
+  <div class="logo">
+    TEC
+  </div>
+  <div id="contenedor-matriz">
+    <div id="matriz"></div>
+  </div>
+  <div class="teclado">
+    <button id="letra_q" class="tecla letra" onclick="letra('q', 'letra_q')">
+      Q
+    </button>
+    <button id="letra_w" class="tecla letra" onclick="letra('w', 'letra_w')">
+      W
+    </button>
+    <button id="letra_e" class="tecla letra" onclick="letra('e', 'letra_e')">
+      E
+    </button>
+    <button id="letra_r" class="tecla letra" onclick="letra('r', 'letra_r')">
+      R
+    </button>
+    <button id="letra_t" class="tecla letra" onclick="letra('t', 'letra_t')">
+      T
+    </button>
+    <button id="letra_y" class="tecla letra" onclick="letra('y', 'letra_y')">
+      Y
+    </button>
+    <button id="letra_u" class="tecla letra" onclick="letra('u', 'letra_u')">
+      U
+    </button>
+    <button id="letra_i" class="tecla letra" onclick="letra('i', 'letra_i')">
+      I
+    </button>
+    <button id="letra_o" class="tecla letra" onclick="letra('o', 'letra_o')">
+      O
+    </button>
+    <button id="backspace" class="tecla funcional" onclick="teclaFuncional('backspace')">
+      Backspace
+    </button>
+    <button id="letra_p" class="tecla letra" onclick="letra('p', 'letra_p')">
+      P
+    </button>
+    <button id="letra_a" class="tecla letra" onclick="letra('a', 'letra_a')">
+      A
+    </button>
+    <button id="letra_s" class="tecla letra" onclick="letra('s', 'letra_s')">
+      S
+    </button>
+    <button id="letra_d" class="tecla letra" onclick="letra('d', 'letra_d')">
+      D
+    </button>
+    <button id="letra_f" class="tecla letra" onclick="letra('f', 'letra_f')">
+      F
+    </button>
+    <button id="letra_g" class="tecla letra" onclick="letra('g', 'letra_g')">
+      G
+    </button>
+    <button id="letra_h" class="tecla letra" onclick="letra('h', 'letra_h')">
+      H
+    </button>
+    <button id="letra_j" class="tecla letra" onclick="letra('j', 'letra_j')">
+      J
+    </button>
+    <button id="letra_k" class="tecla letra" onclick="letra('k', 'letra_k')">
+      K
+    </button>
+    <button id="letra_l" class="tecla letra" onclick="letra('l', 'letra_l')">
+      L
+    </button>
+    <button id="letra_z" class="tecla letra" onclick="letra('z', 'letra_z')">
+      Z
+    </button>
+    <button id="inv01" class="tecla invi">
+      ;
+    </button>
+    <button id="letra_x" class="tecla letra" onclick="letra('x', 'letra_x')">
+      X
+    </button>
+    <button id="letra_c" class="tecla letra" onclick="letra('c', 'letra_c')">
+      C
+    </button>
+    <button id="letra_v" class="tecla letra" onclick="letra('v', 'letra_v')">
+      V
+    </button>
+    <button id="letra_b" class="tecla letra" onclick="letra('b', 'letra_b')">
+      B
+    </button>
+    <button id="letra_n" class="tecla letra" onclick="letra('n', 'letra_n')">
+      N
+    </button>
+    <button id="letra_m" class="tecla letra" onclick="letra('m', 'letra_m')">
+      M
+    </button>
+    <button id="letra_ñ" class="tecla letra" onclick="letra('ñ', 'letra_ñ')">
+      Ñ
+    </button>
+    <button id="enter" class="tecla funcional" onclick="teclaFuncional('enter')">
+      Enter
+    </button>
+  </div> <!-- Fin de la clase teclado -->
+  <script src="main.js"></script>
+</body>
+
+</html>
