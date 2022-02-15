@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+//alert(lista_palabras.back);
+
 //Palabras sacadas del .json
 let objPrincipal = {};
 
@@ -37,6 +39,8 @@ const teclas = document.querySelectorAll('.teclado button')
 //Fila actual
 var filaActual = 0;
 
+//Leer desde el .json
+/*
 fetch("./lista_palabras.json")
     .then(function(resp) {
       return resp.json();
@@ -46,8 +50,12 @@ fetch("./lista_palabras.json")
       elegirPalabra();
       verStats();
     });
+*/
+
+elegirPalabra();
 
 function reiniciarJuego() {
+  verStats();
   letrasElegidas = [];
   elegirPalabra();
   reiniciarTeclado();
@@ -57,9 +65,14 @@ function reiniciarJuego() {
 }
 
 function elegirPalabra() {
+  palabraElegida = lista_palabras[getRandomInt(853)].toUpperCase();
+}
+/*
+function elegirPalabra() {
   palabraElegida = objPrincipal[getRandomInt(853)].toUpperCase();
   //window.alert(palabraElegida)
 }
+*/
 
 function letra(letter, id) {
   if (letrasElegidas.length == 5) {
@@ -79,6 +92,7 @@ function ocultarStats() {
 }
 
 function mostrarStats() {
+  verStats();
   var ventanaStats = document.getElementById("modal-container");
   ventanaStats.style.opacity = "100";
   ventanaStats.style.pointerEvents = "auto";
@@ -122,6 +136,8 @@ function verificarCampos() {
 
   //Jugador termino y gano
   if (palabraDigitada == palabraElegida) {
+    actualizarStats("gano");
+    verStats();
     for (let i in letrasElegidas) {
       var letra = document.getElementById(letrasElegidas[i]);
       letra.style.backgroundColor = 'green';
@@ -132,7 +148,6 @@ function verificarCampos() {
       cuadrado.style.backgroundColor = 'green';
       cuadrado.style.borderColor = 'white';
     }
-    actualizarStats("gano");
     window.alert("Felicidades, has ganado!");
     setTimeout(() => { reiniciarJuego(); }, 2000);
     return;
@@ -159,7 +174,6 @@ function verificarCampos() {
       }
     }
   }
-  console.log(totalElemCambiar);
 
   //Colorear posiciones rotables
   if (posRotables.length != 0) {
@@ -255,6 +269,7 @@ function avanzarFila() {
   if (filaActual == 5) {
     //Termino el juego.
     actualizarStats("perdio");
+    verStats();
     desactivarTeclado();
     window.alert("La respuesta es: " + palabraElegida + ". Mejor suerte a la proxima!");
     reiniciarJuego();
@@ -345,8 +360,8 @@ function mostrarMsjError(mensaje) {
 function palabraValida() {
   var palabraFinal = formarPalabra();
 
-  for (let carac in objPrincipal) {
-    if  (palabraFinal.toUpperCase() == objPrincipal[carac].toUpperCase()) {
+  for (let carac in lista_palabras) {
+    if  (palabraFinal.toUpperCase() == lista_palabras[carac].toUpperCase()) {
       return true;
     }
   }
