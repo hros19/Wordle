@@ -42,11 +42,15 @@ body{
 }
 
 .fade {
-  animation: fading 2s forwards;
+  animation-duration: 2s;
+  animation-name: fading;
+  animation-fill-mode: forwards;
 }
 
 .fadeSonic {
-  animation: fading 2s backwards;
+  animation-duration: 2s;
+  animation-name: fading;
+  animation-fill-mode: backwards;
 }
 
 .modal {

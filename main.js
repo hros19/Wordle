@@ -61,6 +61,7 @@ function reiniciarJuego() {
   filaActual = 0;
   desactivarTeclado();
   setTimeout(() => { encenderTeclado(); }, 2000);
+  setTimeout(() => { reiniciarAnimaciones(); }, 2010);
 }
 
 function elegirPalabra() {
@@ -212,6 +213,13 @@ function verificarCampos() {
   }
   avanzarFila();
   return;
+}
+
+function reiniciarAnimaciones() {
+  for (let i = 0; i < teclas.length; i++) {
+    teclas[i].classList.remove("fade");
+    teclas[i].classList.remove("fadeSonic");
+  }
 }
 
 function actualizarStats(estado) {
