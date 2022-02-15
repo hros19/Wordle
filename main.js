@@ -12,10 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-//alert(lista_palabras.back);
-
 //Palabras sacadas del .json
-let objPrincipal = {};
+//let objPrincipal = {};
 
 //Botones elegidos actualmente
 var letrasElegidas = [];
@@ -58,10 +56,11 @@ function reiniciarJuego() {
   verStats();
   letrasElegidas = [];
   elegirPalabra();
-  reiniciarTeclado();
   reiniciarTablero();
   indCuadrado = 1;
   filaActual = 0;
+  desactivarTeclado();
+  setTimeout(() => { encenderTeclado(); }, 2000);
 }
 
 function elegirPalabra() {
@@ -115,7 +114,7 @@ function teclaFuncional(nombre) {
     return;
   }
   if (!palabraValida()) {
-    mostrarMsjError("La palabra no es valida!");
+    mostrarMsjError("La palabra esta en la lista de palabras");
     return;
   } else {
     verificarCampos();
@@ -201,6 +200,7 @@ function verificarCampos() {
       var cuadrado = document.getElementById(i + 1 + (5 * filaActual));
       
       if (palabraElegida.indexOf(letra.textContent.charAt(7)) == -1) {
+        letra.classList.add('fade');
         letra.disabled = true;
         letra.style.backgroundColor = "#252525";
         letra.style.borderColor = "#252525";
@@ -265,6 +265,22 @@ function sumOfArray(arr) {
   return result;
 }
 
+function encenderTeclado() {
+  //Activar
+  var enter = document.getElementById("enter")
+  var backspace = document.getElementById("backspace")
+  for (let i = 0; i < teclas.length; i++) {
+    teclas[i].disabled = false;
+    teclas[i].classList.add('fadeSonic');
+    teclas[i].style.backgroundColor = "#504f4f";
+    teclas[i].style.borderColor = "#797979";
+  }
+  enter.style.background = "#f14519";
+  enter.style.borderColor = "#eee";
+  backspace.style.background = "#f14519";
+  backspace.style.borderColor = "#eee";
+}
+
 function avanzarFila() {
   if (filaActual == 5) {
     //Termino el juego.
@@ -320,11 +336,6 @@ function getPosRotables() {
     }
   }
   return posicionesRotables;
-}
-
-//borrar entrega
-function setPalabra(palabra) {
-  palabraElegida = palabra;
 }
 
 function getPosIguales() {
@@ -395,6 +406,7 @@ function reiniciarTeclado() {
   var backspace = document.getElementById("backspace")
   for (let i = 0; i < teclas.length; i++) {
     teclas[i].disabled = false;
+    teclas[i].classList.add('fadeSonic');
     teclas[i].style.backgroundColor = "#504f4f";
     teclas[i].style.borderColor = "#797979";
   }
@@ -409,5 +421,6 @@ function desactivarTeclado() {
   document.getElementById("backspace").disabled = true;
   for (let i = 0; i < teclas.length; i++) {
     teclas[i].disabled = true;
+    teclas[i].classList.add('fade');
   }
 }

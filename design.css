@@ -19,6 +19,35 @@ body{
   opacity: 0;
 }
 
+@keyframes fading {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeOutUpBig {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -1800px, 0);
+    transform: translate3d(0, -1800px, 0);
+  }
+}
+
+.animateFadeOutUpBig {
+  -webkit-animation-name: fadeOutUpBig;
+  animation-name: fadeOutUpBig;
+}
+
+.fade {
+  animation: fading 2s forwards;
+}
+
+.fadeSonic {
+  animation: fading 2s backwards;
+}
 
 .modal {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
