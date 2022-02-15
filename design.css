@@ -114,6 +114,11 @@ body{
   background: #01366e;
 }
 
+.reinicio {
+  background-color: #01a566;
+  place-self: right;
+}
+
 .button__text,
 .button__icon {
   display: inline-flex;

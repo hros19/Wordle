@@ -123,6 +123,11 @@ function teclaFuncional(nombre) {
   }
 }
 
+function callReinicio() {
+  setTimeout(() => { reiniciarJuego(); }, 1000);
+  return;
+}
+
 function verStats() {
   var parag = document.getElementById("statsParag");
 
@@ -149,7 +154,8 @@ function verificarCampos() {
       cuadrado.style.borderColor = 'white';
     }
     window.alert("Felicidades, has ganado!");
-    setTimeout(() => { reiniciarJuego(); }, 2000);
+    quitarLetrasTablero();
+    //setTimeout(() => { reiniciarJuego(); }, 2000);
     return;
   }
 
@@ -314,7 +320,7 @@ function statsToString() {
   stats += "Porcentaje de victorias: " + winrate + "%" + '<br/>';
   stats += "Racha actual: " + rachaActual + '<br/>';
   stats += "Mejor racha: " + mejorRacha + '<br/><br/>';
-  stats += "Victorias segun cantidad de intentos: " + '<br/>';
+  stats += "Victorias según cantidad de intentos: " + '<br/>';
   stats += "Un intento: " + partidasGanadas[0] + '<br/>';
   stats += "Dos intentos: " + partidasGanadas[1] + '<br/>';
   stats += "Tres intentos: " + partidasGanadas[2] + '<br/>';
@@ -398,6 +404,13 @@ function formarPalabra() {
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
+}
+
+function quitarLetrasTablero() {
+  for (let i = 1; i < 31; i++) {
+    var cuadrado = document.getElementById(i);
+    cuadrado.textContent = "";
+  }
 }
 
 function reiniciarTablero() {

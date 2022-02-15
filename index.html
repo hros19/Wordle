@@ -25,12 +25,18 @@
       <ion-icon name="stats-chart-outline"></ion-icon>
     </span>
   </button>
+  <button id="reinicio" type="button" class="button reinicio" onclick="callReinicio()">
+    <span class="button__text">Restart</span>
+    <span class="button__icon">
+      <ion-icon name="refresh-circle-outline"></ion-icon>
+    </span>
+  </button>
   <div class="logo">
     TEC
   </div>
   <div class="modal-container" id="modal-container">
     <div class="modal">
-      <h1>Estadisticas</h1>
+      <h1>Estadísticas</h1>
       <p id="statsParag"></p>
       <button id="cerrarStats" class="cerrar" onclick="ocultarStats()">Cerrar</button>
     </div>

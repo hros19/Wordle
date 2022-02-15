@@ -1,0 +1,17 @@
+Estudiante: Hansol Antay
+Curso: Análisis de Algoritmos
+Asignación: TC01 - Wordle
+
+Comentarios:
+
+- Hay errores de diseño si se abre en móvil (mal uso de la estructura HTML).
+
+- El juego una vez terminado (pierda o gane) se reiniciará automáticamente en cuestión de segundos. (Con la idea de que se aprecie la animación de reinicio).
+
+- Estadísticas persistentes según la sesión, una vez cerrada la aplicación se perderán todos los datos.
+
+- Solamente se utilizó un recurso externo que es exclusivamente para ponerle un ícono al botón de "Stats" y de "Reinicio". No posee ninguna animación/función en ninguna parte del proyecto.
+
+(index.html  línea 134, 136)
+ÚNICAS Líneas en la que se utilizó:
+(index.html  línea 25, 31)
