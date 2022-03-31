@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   crearMatriz();
-
+  
+  /**
+   * Creamos la matriz desde el inicio de carga del documento.
+   */
   function crearMatriz() {
     const matriz = document.getElementById("matriz")
     for (let i = 0; i < 30; i++) {
@@ -12,46 +15,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-//Palabras sacadas del .json
-//let objPrincipal = {};
-
-//Botones elegidos actualmente
+// Botones elegidos actualmente
 var letrasElegidas = [];
 
-//Palabra elegida (al azar)
+// Palabra elegida (al azar)
 var palabraElegida = "";
 
-//Cuadrado actual
+// Cuadrado actual (incial de la matriz)
 var indCuadrado = 1;
 
-//Estadisticas <<<<
+// Variable para las estadísticas
 var totalJugadas = 0;
 var totalPerdidas = 0;
 var partidasGanadas = [0, 0, 0, 0, 0, 0];
 var rachaActual = 0;
 var mejorRacha = 0;
 
-//Botones del teclado
+// Todos los botones del teclado como un array
 const teclas = document.querySelectorAll('.teclado button')
 
-//Fila actual
+// Fila actual en donde se encuentra, tambien puede verse como cantidad de palabras correctas.
 var filaActual = 0;
 
-//Leer desde el .json
-/*
-fetch("./lista_palabras.json")
-    .then(function(resp) {
-      return resp.json();
-    })
-    .then(function(data) {
-      objPrincipal = data;
-      elegirPalabra();
-      verStats();
-    });
-*/
-
+// Se elije una palabra de forma aleatoria.
 elegirPalabra();
 
+/**
+ * Función que reiniciar el juego y por ende todos sus elementos a sus valores por defecto.
+ */
 function reiniciarJuego() {
   verStats();
   letrasElegidas = [];
@@ -64,16 +55,19 @@ function reiniciarJuego() {
   setTimeout(() => { reiniciarAnimaciones(); }, 2010);
 }
 
+/**
+ * Función que elige una palabra de forma aleatoria.
+ */
 function elegirPalabra() {
   palabraElegida = lista_palabras[getRandomInt(853)].toUpperCase();
 }
-/*
-function elegirPalabra() {
-  palabraElegida = objPrincipal[getRandomInt(853)].toUpperCase();
-  //window.alert(palabraElegida)
-}
-*/
 
+/**
+ * Acción de los botones de las letras del teclado. Que se encarga de agregar la letra a la matriz y a la lista de letras elegidas.
+ * @param {String} letter El valor de la letra elegida 
+ * @param {*} id El id del elemento del HTML.
+ * @returns --
+ */
 function letra(letter, id) {
   if (letrasElegidas.length == 5) {
     window.alert("Ya no puedes elegir mas letras!")
@@ -85,12 +79,18 @@ function letra(letter, id) {
   letrasElegidas.push(id);
 }
 
+/**
+ * Función que oculta la ventana modal que es donde se almacenan las estadísticas.
+ */
 function ocultarStats() {
   var ventanaStats = document.getElementById("modal-container");
   ventanaStats.style.opacity = "0";
   ventanaStats.style.pointerEvents = "none";
 }
 
+/**
+ * Función que permite mostrar la ventana modal de las estadísticas.
+ */
 function mostrarStats() {
   verStats();
   var ventanaStats = document.getElementById("modal-container");
@@ -98,6 +98,11 @@ function mostrarStats() {
   ventanaStats.style.pointerEvents = "auto";
 }
 
+/**
+ * Función encargada de darle vida a los botones del teclado con funciones especiales.
+ * @param {String} nombre Nombre del botón como tal.
+ * @returns --
+ */
 function teclaFuncional(nombre) {
   if (nombre == 'backspace') {
     if (letrasElegidas.length == 0) {
@@ -123,17 +128,29 @@ function teclaFuncional(nombre) {
   }
 }
 
+/**
+ * Hace una llamada al reinicio del juego luego de 1 segundo.
+ * @returns --
+ */
 function callReinicio() {
   setTimeout(() => { reiniciarJuego(); }, 1000);
   return;
 }
 
+/**
+ * Función que en realidad actualiza los stats, un olor de software.
+ */
 function verStats() {
   var parag = document.getElementById("statsParag");
 
   parag.innerHTML = statsToString();
 }
 
+/**
+ * Verifica los campos en donde el usuario ha colocado letras y hace
+ * la respectiva lógica.
+ * @returns --
+ */
 function verificarCampos() {
   var palabraDigitada = formarPalabra();
 
@@ -155,7 +172,6 @@ function verificarCampos() {
     }
     window.alert("Felicidades, has ganado!");
     quitarLetrasTablero();
-    //setTimeout(() => { reiniciarJuego(); }, 2000);
     return;
   }
 
@@ -221,6 +237,9 @@ function verificarCampos() {
   return;
 }
 
+/**
+ * Reinicia todos los valores de animaciones y demás.
+ */
 function reiniciarAnimaciones() {
   for (let i = 0; i < teclas.length; i++) {
     teclas[i].classList.remove("fade");
@@ -228,6 +247,10 @@ function reiniciarAnimaciones() {
   }
 }
 
+/**
+ * Función que actualiza las estadísticas dependiendo del resultado obtenido.
+ * @param {String} estado String que indica si gano o perdio.
+ */
 function actualizarStats(estado) {
   totalJugadas++;
 
@@ -243,6 +266,10 @@ function actualizarStats(estado) {
   }
 }
 
+/**
+ * Función que le suma un punto a la victoria dependiendo de cuantas
+ * palabras requirio el jugador para ganar.
+ */
 function calcularGanadas() {
   switch (filaActual) {
     case 0: //a la primera
@@ -265,12 +292,23 @@ function calcularGanadas() {
   }
 }
 
+/**
+ * Función que devuelve un array con las posiciones de las letras que se borraron.
+ * @param {Array} arr Array que contiene los valores a eliminar. 
+ * @param {*} value El valor a eliminar.
+ * @returns --
+ */
 function arrayRemove(arr, value) {
   return arr.filter(function(ele) {
     return ele != value;
   });
 }
 
+/**
+ * Función para sacar la sumatoria de un array.
+ * @param {Array} arr El array a sumar sus valores. 
+ * @returns El resultado de todos los valores sumados del array.
+ */
 function sumOfArray(arr) {
   var result = 0;
   for (let i in arr) {
@@ -279,6 +317,9 @@ function sumOfArray(arr) {
   return result;
 }
 
+/**
+ * Función que sirve para volver a darle vida al teclado, tanto para animaciones como para que se pueda volver a usar.
+ */
 function encenderTeclado() {
   //Activar
   var enter = document.getElementById("enter")
@@ -295,6 +336,10 @@ function encenderTeclado() {
   backspace.style.borderColor = "#eee";
 }
 
+/**
+ * Función para avanzar de fila ya sea que perdió o si puede seguir avanzando.
+ * @returns --
+ */
 function avanzarFila() {
   if (filaActual == 5) {
     //Termino el juego.
@@ -309,6 +354,10 @@ function avanzarFila() {
   letrasElegidas = [];
 }
 
+/**
+ * Función que permite obtener las estadísticas como un String.
+ * @returns Un String con todas las estadísticas del usuario en la sesión.
+ */
 function statsToString() {
   let stats = "";
   var totalGanadas = totalJugadas - totalPerdidas;
@@ -331,6 +380,11 @@ function statsToString() {
   return stats;
 }
 
+/**
+ * @returns un array con todas las posiciones que son rotables de la palabra.
+ * Entiendose como rotables a aquellas posiciones de la palabra que si pertenecen
+ * a ella pero que no están en el lugar correcto.
+ */
 function getPosRotables() {
   var palabraDigitada = formarPalabra();
   var posicionesRotables = [];
@@ -352,6 +406,9 @@ function getPosRotables() {
   return posicionesRotables;
 }
 
+/**
+ * @returns un array con las posiciones de las letras que están en el lugar correcto.
+ */
 function getPosIguales() {
   var posicionesIguales = [];
   var palabraDigitada = formarPalabra();
@@ -382,6 +439,9 @@ function mostrarMsjError(mensaje) {
   window.alert(mensaje)
 }
 
+/**
+ * @returns True, si la palabra digitada es correcta. False, si no lo es.
+ */
 function palabraValida() {
   var palabraFinal = formarPalabra();
 
@@ -393,6 +453,9 @@ function palabraValida() {
   return false;
 }
 
+/**
+ * @returns Un string con todas las letras que digitó el usuario.
+ */
 function formarPalabra() {
   var palabraFinal = "";
   for (let i in letrasElegidas) {
@@ -406,6 +469,9 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+/**
+ * Función para borrar todas las letras que se han elegido hasta ahora.
+ */
 function quitarLetrasTablero() {
   for (let i = 1; i < 31; i++) {
     var cuadrado = document.getElementById(i);
@@ -413,6 +479,10 @@ function quitarLetrasTablero() {
   }
 }
 
+/**
+ * Función para reiniciar el tablero como tal, entendionse como la matriz
+ * que se muestra en la página
+ */
 function reiniciarTablero() {
   for (let i = 1; i < 31; i++) {
     var cuadrado = document.getElementById(i);
@@ -422,6 +492,9 @@ function reiniciarTablero() {
   }
 }
 
+/**
+ * Función para reiniciar todas las animaciones y funcionalidades del teclado.
+ */
 function reiniciarTeclado() {
   var enter = document.getElementById("enter")
   var backspace = document.getElementById("backspace")
@@ -437,6 +510,9 @@ function reiniciarTeclado() {
   backspace.style.borderColor = "#eee";
 } 
 
+/**
+ * Función para desactivar el teclado.
+ */
 function desactivarTeclado() {
   document.getElementById("enter").disabled = true;
   document.getElementById("backspace").disabled = true;
